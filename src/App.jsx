@@ -1146,20 +1146,20 @@ export default function App() {
               <div className="container hero-inner">
                 <div className="hero-copy">
                   <div className="hero-eyebrow-line-wrap">
-                    <span className="hero-eyebrow-text">HAMBÚRGUER ARTESANAL</span>
+                    <span className="hero-eyebrow-text">100% ARTESANAL E NA BRASA</span>
                     <span className="hero-eyebrow-bar" />
                   </div>
                   <h1>
-                    <span className="hero-title-main">O HAMBÚRGUER</span>
-                    <span className="hero-title-light">QUE FAZ SEU</span>
-                    <span className="hero-title-accent">CLIENTE VOLTAR</span>
+                    <span className="hero-title-main">O VERDADEIRO</span>
+                    <span className="hero-title-light">SABOR DA BRASA</span>
+                    <span className="hero-title-accent">EM CADA DENTADA</span>
                   </h1>
-                  <p className="hero-description">Carne na brasa, ingredientes de verdade<br className="desktop-break" /> e um sabor que fica na memória.</p>
+                  <p className="hero-description">Carne suculenta grelhada no fogo, cheddar derretido no ponto certo e pão brioche selado na manteiga.<br className="desktop-break" /> Não é apenas um hambúrguer, é o seu novo vício.</p>
                   <div className="hero-actions">
                     <a className="button button-primary" href="#cardapio" onClick={(e) => { e.preventDefault(); openCardapioSection('Todos') }}>
-                      <span>Quero o meu</span>
+                      <span>Matar a minha fome agora</span>
                     </a>
-                    <a className="button button-outline" href="#cardapio" onClick={(e) => { e.preventDefault(); openCardapioSection('Todos') }}>Ver cardápio</a>
+                    <a className="button button-outline" href="#cardapio" onClick={(e) => { e.preventDefault(); openCardapioSection('Todos') }}>Ver o menu</a>
                   </div>
                   <div className="hero-details-svg">
                     <div className="hero-detail-item">
@@ -1167,17 +1167,17 @@ export default function App() {
                         <SvgIcon name="flame" />
                       </div>
                       <div className="hero-detail-labels">
-                        <strong>Feito</strong>
-                        <span>na brasa</span>
+                        <strong>Defumado autêntico</strong>
+                        <span>Feito na grelha de verdade</span>
                       </div>
                     </div>
                     <div className="hero-detail-item">
                       <div className="hero-detail-icon">
-                        <SvgIcon name="chef-hat" />
+                        <SvgIcon name="burger" />
                       </div>
                       <div className="hero-detail-labels">
-                        <strong>Preparado</strong>
-                        <span>na hora</span>
+                        <strong>Sempre fresco</strong>
+                        <span>Carne picada diariamente</span>
                       </div>
                     </div>
                   </div>
@@ -1186,7 +1186,7 @@ export default function App() {
                 </div>
 
               <div className="hero-note">
-                <p className="handwritten">Sabor que<br />conecta pessoas</p>
+                <p className="handwritten">Crocância e<br />suculência no limite</p>
                 <svg className="hero-note-arrow" viewBox="0 0 65 65" fill="none" stroke="#f58518" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M 45 5 Q 50 35, 10 50" />
                   <polyline points="20 40 10 50 25 55" />
@@ -1289,16 +1289,16 @@ export default function App() {
             <section className="menu-section light-section" id="cardapio">
               <div className="container">
                 <div className="section-heading">
-                  <h2>Hambúrgueres que são<br /><span>pura experiência</span></h2>
+                  <h2>Escolha a sua<br /><span>próxima obsessão</span></h2>
                   <div className="menu-heading-side">
                     <div className="menu-handwritten-wrap">
                       <svg className="menu-handwritten-arrow left" viewBox="0 0 60 70" fill="none" stroke="#a1643c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                         <path d="M 16 6 C 22 26, 32 34, 38 52" />
                         <polyline points="27 43 38 54 47 45" />
                       </svg>
-                      <p className="handwritten">Qual vai ser<br />o seu hoje?</p>
+                      <p className="handwritten">Difícil vai ser<br />escolher só um!</p>
                     </div>
-                    <button className="button button-outline dark-outline" onClick={() => openCardapioSection('Hambúrgueres')}>Abrir cardápio completo</button>
+                    <button className="button button-outline dark-outline" onClick={() => openCardapioSection('Hambúrgueres')}>Ver menu completo</button>
                   </div>
                 </div>
                 <div className="menu-tabs" aria-label="Filtrar cardápio">
@@ -1307,7 +1307,7 @@ export default function App() {
                       {item === 'Todos' ? 'Todos os burgers' : item === 'Carne' ? 'Na brasa' : 'Frango crocante'}
                     </button>
                   ))}
-                  <span>Pão macio · Brasa forte · Sabor sem igual</span>
+                  <span>Brioche selado • Carne alta e suculenta • Molhos exclusivos</span>
                 </div>
                 <div className="products-grid">
                   {burgers.filter(i => category === 'Todos' || i.category === category).map(p => (

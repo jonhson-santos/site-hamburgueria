@@ -3644,6 +3644,16 @@ footer {
     grid-template-columns: 1fr;
   }
 
+  .hero-title-main,
+  .hero-title-accent {
+    font-size: clamp(38px, 12vw, 60px);
+    letter-spacing: 0;
+  }
+
+  .hero-title-light {
+    font-size: clamp(32px, 10.5vw, 50px);
+  }
+
   .qualities-grid {
     grid-template-columns: 1fr;
   }
