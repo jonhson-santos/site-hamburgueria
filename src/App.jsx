@@ -1090,7 +1090,6 @@ export default function App() {
                   muted
                   playsInline
                   preload="metadata"
-                  poster="/media/hero.png"
                   aria-hidden="true"
                 >
                   <source src="/videos/hero-burger.mp4" type="video/mp4" />
