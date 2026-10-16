@@ -561,11 +561,25 @@ function PaymentMark({ name }) {
   )
 }
 
+
+// Shapes de onda exclusivos por tipo de transição — cada divisão tem personalidade própria
+const DIVIDER_SHAPES = {
+  'hero-to-cream':   'M0,0 C240,68 480,72 720,48 C960,24 1200,64 1440,36 L1440,80 L0,80 Z',
+  'cream-to-dark':   'M0,28 C180,0  480,72 840,40 C1080,16 1260,60 1440,20 L1440,80 L0,80 Z',
+  'dark-to-cream':   'M0,40 C300,72 600,8  900,52 C1100,80 1300,28 1440,56 L1440,80 L0,80 Z',
+  'cream-to-app':    'M0,16 C360,76 720,0  1080,60 C1260,80 1380,32 1440,48 L1440,80 L0,80 Z',
+  'app-to-offer':    'M0,52 C200,20 560,76 800,32 C1040,0  1280,60 1440,28 L1440,80 L0,80 Z',
+  'offer-to-cream':  'M0,24 C280,80 640,4  960,56 C1120,80 1300,20 1440,44 L1440,80 L0,80 Z',
+  'cream-to-footer': 'M0,40 C320,80 640,0  960,60 C1200,80 1360,24 1440,40 L1440,80 L0,80 Z',
+}
+
 function SectionDivider({ from = 'cream', to = 'dark', flip = false }) {
+  const key = `${from}-to-${to}`
+  const d = DIVIDER_SHAPES[key] || 'M0,20 C360,72 1080,0 1440,48 L1440,80 L0,80 Z'
   return (
     <div className={`section-divider divider-from-${from}-to-${to}${flip ? ' divider-flip' : ''}`} aria-hidden="true">
-      <svg viewBox="0 0 1440 64" preserveAspectRatio="none" focusable="false">
-        <path d="M0,0 C320,52 720,64 1080,24 C1200,10 1340,18 1440,32 L1440,64 L0,64 Z" />
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" focusable="false">
+        <path d={d} />
       </svg>
     </div>
   )

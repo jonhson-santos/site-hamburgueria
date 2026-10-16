@@ -682,55 +682,60 @@ body::-webkit-scrollbar {
 
 /* ==========================================================================
    UNIFIED HARMONIOUS SECTION DIVIDERS & TRANSITIONS
+   Cores exatas combinadas com cada seção — sem linhas ou brechas visíveis
    ========================================================================== */
 .section-divider {
   display: block;
   width: 100%;
-  height: 52px;
+  height: 72px;
   line-height: 0;
   overflow: hidden;
   position: relative;
   z-index: 5;
-  margin-top: -1px;
-  margin-bottom: -1px;
+  margin-top: -2px;
+  margin-bottom: -2px;
   pointer-events: none;
+  flex-shrink: 0;
 }
 
 .section-divider svg {
   display: block;
   width: 100%;
   height: 100%;
+  preserveAspectRatio: none;
 }
 
 .divider-flip svg {
   transform: scaleX(-1);
 }
 
-/* Transition 1: Hero Bottom (#100f0d) -> Cream (#fbf7f0) */
+/* ─── Transição 1: Hero dark (#0b0907) → Cream qualidades (#fbf7f0) ─── */
+/* Seção hero tem bg #0b0907, qualities-features-bar tem bg var(--cream) */
 .divider-from-hero-to-cream {
-  background-color: #100f0d;
+  background-color: #0b0907;
 }
 .divider-from-hero-to-cream path {
-  fill: var(--cream);
+  fill: var(--cream); /* = #fbf7f0 */
 }
 
-/* Transition 2: Menu Cream (#fbf7f0) -> Combos Dark (#141210) */
+/* ─── Transição 2: Cream menu (#fbf7f0) → Combos dark (#11100e) ─── */
+/* combos-section usa var(--dark-bg) = #11100e */
 .divider-from-cream-to-dark {
   background-color: var(--cream);
 }
 .divider-from-cream-to-dark path {
-  fill: #141210;
+  fill: var(--dark-bg); /* = #11100e */
 }
 
-/* Transition 3: Combos Dark (#141210) -> About Cream (#fbf7f0) */
+/* ─── Transição 3: Combos dark (#11100e) → About cream (#fbf7f0) ─── */
 .divider-from-dark-to-cream {
-  background-color: #141210;
+  background-color: var(--dark-bg); /* = #11100e */
 }
 .divider-from-dark-to-cream path {
-  fill: var(--cream);
+  fill: var(--cream); /* = #fbf7f0 */
 }
 
-/* Transition 4: About Cream (#fbf7f0) -> App Banner (#0e0b08) */
+/* ─── Transição 4: About cream (#fbf7f0) → App Banner (#0e0b08) ─── */
 .divider-from-cream-to-app {
   background-color: var(--cream);
 }
@@ -738,28 +743,36 @@ body::-webkit-scrollbar {
   fill: #0e0b08;
 }
 
-/* Transition 5: App Banner (#0e0b08) -> Offer Section (#160f0b) */
+/* ─── Transição 5: App Banner (#0e0b08) → Offer Section (dark-bg #11100e) ─── */
+/* offer-section usa radial-gradient com base var(--dark-bg) = #11100e */
 .divider-from-app-to-offer {
   background-color: #0e0b08;
 }
 .divider-from-app-to-offer path {
-  fill: #160f0b;
+  fill: var(--dark-bg); /* = #11100e */
 }
 
-/* Transition 6: Offer Section (#160f0b) -> Contact Cream (#fbf7f0) */
+/* ─── Transição 6: Offer dark (#11100e) → Contact cream (#fbf7f0) ─── */
 .divider-from-offer-to-cream {
-  background-color: #160f0b;
+  background-color: var(--dark-bg); /* = #11100e */
 }
 .divider-from-offer-to-cream path {
-  fill: var(--cream);
+  fill: var(--cream); /* = #fbf7f0 */
 }
 
-/* Transition 7: Contact Cream (#fbf7f0) -> Footer (#0c0b09) */
+/* ─── Transição 7: Contact cream (#fbf7f0) → Footer dark (#0f0e0d) ─── */
 .divider-from-cream-to-footer {
   background-color: var(--cream);
 }
 .divider-from-cream-to-footer path {
-  fill: #0c0b09;
+  fill: #0f0e0d; /* base do radial-gradient do footer */
+}
+
+/* ─── Mobile: dividers menores ─── */
+@media (max-width: 768px) {
+  .section-divider {
+    height: 44px;
+  }
 }
 
 /* ==========================================================================
@@ -1584,8 +1597,6 @@ h2 span {
   position: relative;
   background: radial-gradient(ellipse at 85% 50%, #7c2e05 0%, #261306 48%, var(--dark-bg) 85%);
   overflow: hidden;
-  border-top: 1px solid rgba(245, 133, 24, 0.2);
-  border-bottom: 1px solid rgba(245, 133, 24, 0.2);
   color: #ffffff;
 }
 
@@ -3160,35 +3171,51 @@ footer {
   }
 
   .products-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
   }
 
   .product-photo {
-    aspect-ratio: 1.35;
+    aspect-ratio: 1.1;
   }
 
   .product-content {
-    padding: 18px 16px 16px;
+    padding: 14px 13px 13px;
   }
 
   .product-content h3 {
-    font-size: 18px;
+    font-size: 15px;
   }
 
   .product-content > p {
-    font-size: 12.5px;
+    font-size: 12px;
     min-height: auto;
+    line-height: 1.5;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .product-bottom {
+    margin-top: 12px;
+    padding-top: 10px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
   }
 
   .product-bottom > strong {
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .add-button {
-    font-size: 12.5px;
-    min-height: 42px;
-    padding: 10px 16px;
+    font-size: 11.5px;
+    min-height: 36px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    width: 100%;
+    justify-content: center;
   }
 
   /* About Mobile */
@@ -3482,6 +3509,35 @@ footer {
   .coupon-row {
     flex-direction: column;
     gap: 10px;
+  }
+}
+
+/* Telas muito pequenas (max-width: 380px) — 1 coluna novamente */
+@media (max-width: 380px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .product-photo {
+    aspect-ratio: 1.3;
+  }
+
+  .product-content {
+    padding: 16px 14px 14px;
+  }
+
+  .product-content h3 {
+    font-size: 17px;
+  }
+
+  .product-bottom {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  .add-button {
+    width: auto;
   }
 }
 
@@ -4554,6 +4610,46 @@ footer {
 }
 
 @media (max-width: 600px) {
+  .cardapio-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .cardapio-card-img-wrap {
+    aspect-ratio: 1 / 1;
+  }
+
+  .cardapio-card-body {
+    padding: 12px 10px 10px;
+  }
+
+  .cardapio-card-title {
+    font-size: 14px;
+  }
+
+  .cardapio-card-desc {
+    font-size: 11.5px;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .cardapio-card-footer {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  .cardapio-card-add-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 380px) {
   .cardapio-grid {
     grid-template-columns: 1fr;
   }
