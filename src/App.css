@@ -638,7 +638,7 @@ body::-webkit-scrollbar {
 
 .qualities-features-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: center;
   gap: 0;
   background: rgba(255, 255, 255, 0.85);
@@ -653,6 +653,7 @@ body::-webkit-scrollbar {
   align-items: center;
   gap: 16px;
   padding: 12px 20px;
+  min-width: 0;
   border-right: 1px solid rgba(0, 0, 0, 0.08);
   transition: transform 0.25s ease;
 }
@@ -687,6 +688,8 @@ body::-webkit-scrollbar {
 .quality-feature-text {
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .quality-feature-text strong {
@@ -1106,44 +1109,26 @@ h2 span {
    ========================================================================== */
 .about-section {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 560px;
   background-color: var(--cream);
   color: var(--ink);
   overflow: hidden;
+  padding: 64px 0 76px;
 }
 
-.about-overlay-divider {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 58px;
-  line-height: 0;
-  z-index: 6;
-  pointer-events: none;
-}
-
-.about-overlay-divider svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.about-divider-top {
-  top: 0;
-}
-
-.about-divider-bottom {
-  bottom: 0;
+.about-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 52px;
+  align-items: center;
 }
 
 .about-image {
   position: relative;
   overflow: hidden;
-  min-height: 540px;
-  width: 100%;
+  min-height: 480px;
   height: 100%;
+  border-radius: 24px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
 }
 
 .about-image img {
@@ -1154,6 +1139,7 @@ h2 span {
   left: 0;
   object-fit: cover;
   object-position: center;
+  border-radius: 24px;
 }
 
 .about-image:after {
@@ -1162,11 +1148,12 @@ h2 span {
   inset: 0;
   background: linear-gradient(135deg, rgba(16, 11, 7, 0.35) 0%, rgba(16, 11, 7, 0.05) 60%, transparent 100%);
   z-index: 1;
+  border-radius: 24px;
 }
 
 .about-image .handwritten {
   position: absolute;
-  top: 68px;
+  top: 48px;
   left: 8%;
   z-index: 5;
   color: #faede0;
@@ -1176,7 +1163,7 @@ h2 span {
 }
 
 .about-copy {
-  padding: 84px 9% 80px 8%;
+  padding: 0;
   align-self: center;
   position: relative;
   z-index: 3;
@@ -2285,7 +2272,7 @@ footer {
 .review-card,
 .location-card,
 .coupon-box,
-.about-section {
+.about-copy {
   opacity: 0;
   transform: translateY(28px);
   transition:
@@ -3254,13 +3241,14 @@ footer {
   }
 
   .qualities-features-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
   }
 
   .quality-feature-item {
     padding: 10px 12px;
     gap: 10px;
+    min-width: 0;
     border-right: none;
     background: rgba(0, 0, 0, 0.03);
     border-radius: 8px;
@@ -3369,31 +3357,36 @@ footer {
 
   /* About Mobile */
   .about-section {
-    grid-template-columns: 1fr;
-    min-height: auto;
-    padding: 0;
+    padding: 24px 0 48px;
   }
 
-  .about-overlay-divider {
-    height: 42px;
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 28px;
   }
 
   .about-image {
     position: relative;
-    height: 340px;
-    min-height: 300px;
+    height: 300px;
+    min-height: 260px;
     width: 100%;
     margin: 0;
+    border-radius: 20px;
+  }
+
+  .about-image img,
+  .about-image:after {
+    border-radius: 20px;
   }
 
   .about-image .handwritten {
     font-size: 24px;
-    top: 50px;
+    top: 36px;
     left: 20px;
   }
 
   .about-copy {
-    padding: 40px 20px 60px;
+    padding: 0;
     text-align: center;
   }
 
@@ -3692,6 +3685,11 @@ footer {
   .products-grid {
     grid-template-columns: 1fr;
     gap: 14px;
+  }
+
+  /* Diferenciais em 1 coluna: 2 colunas espremiam o texto e vazavam na lateral */
+  .qualities-features-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .product-photo {
