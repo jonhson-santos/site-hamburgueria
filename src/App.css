@@ -2517,31 +2517,6 @@ footer {
   .cart-panel {
     padding: 18px 14px 28px;
   }
-
-  .cart-items {
-    flex: none;
-    padding: 8px 0 0;
-  }
-
-  .cart-item {
-    margin: 0 -6px;
-    padding: 12px 6px;
-    gap: 12px;
-  }
-
-  .cart-item-media {
-    width: 64px;
-    min-width: 64px;
-    height: 64px;
-  }
-
-  .coupon-form > div {
-    flex-direction: column;
-  }
-
-  .coupon-form > div .button {
-    width: 100%;
-  }
 }
 
 .cart-header {
@@ -3656,6 +3631,32 @@ footer {
   .coupon-row {
     flex-direction: column;
     gap: 10px;
+  }
+
+  /* Carrinho no mobile: sem vão morto entre itens e cupom */
+  .cart-items {
+    flex: none;
+    padding: 8px 0 0;
+  }
+
+  .cart-item {
+    margin: 0 -6px;
+    padding: 12px 6px;
+    gap: 12px;
+  }
+
+  .cart-item-media {
+    width: 64px;
+    min-width: 64px;
+    height: 64px;
+  }
+
+  .coupon-form > div {
+    flex-direction: column;
+  }
+
+  .coupon-form > div .button {
+    width: 100%;
   }
 }
 
