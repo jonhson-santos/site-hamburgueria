@@ -1,0 +1,21 @@
+{
+  "name": "Brasa Prime Burger",
+  "short_name": "Brasa Prime",
+  "description": "Hambúrguer artesanal na brasa, combos e entrega rápida. Peça pelo nosso Web App!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#11100e",
+  "theme_color": "#d46416",
+  "icons": [
+    {
+      "src": "/media/burgers.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/media/burgers.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

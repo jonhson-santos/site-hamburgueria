@@ -1,0 +1,47 @@
+/* Complementos neutros; os estilos e a temática originais permanecem nas páginas. */
+:focus-visible { outline: 2px solid var(--primary-light); outline-offset: 4px; }
+button, input, select { font-size: 1rem; }
+button { color: inherit; }
+.header-bg, .login-page, .template-intro { background: radial-gradient(ellipse at 80% 30%, #163d4b 0%, #0b161c 40%, #0a0a0a 75%); }
+.hero-banner { min-height: 700px; background-image: url('/media/member-hero-cover.png'); background-position: center center; }
+.hero-info { margin-bottom: 0; }
+.template-avatar { display: flex; align-items: center; justify-content: center; color: var(--primary-light); background: #102e3a; }
+.template-cover { display: flex; flex-direction: column; justify-content: space-between; gap: .7rem; height: 100%; padding: 1.5rem; background: linear-gradient(125deg, #173746, #0b1920); color: white; }
+.template-cover h4 { font-size: 1.8rem; }
+.template-cover > span { display: flex; align-items: center; gap: .5rem; font-size: .875rem; color: #b9d5dd; }
+.template-cover .cover-index { letter-spacing: 1px; padding-right: 1.5rem; }
+.favorite-toggle { position: absolute; top: .65rem; right: .65rem; padding: .5rem; border-radius: 50%; background: #0c2530; color: #d9f4f7; }
+.favorite-toggle.saved { color: #a5f3fc; }
+.standalone-rows { margin-top: 0; padding-top: 130px; }
+.collection-title { margin-bottom: 2rem; font-size: 2.5rem; }
+.notifications-panel { position: absolute; right: 4%; top: 75px; padding: 1.5rem; max-width: 90vw; }
+.video-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: 1rem; text-align: center; color: var(--primary-light); }
+.video-placeholder h3 { font-size: 2rem; }
+.video-placeholder p { color: var(--text-secondary); }
+.sidebar-item { width: 100%; text-align: left; }
+.empty-state { display: flex; flex-direction: column; align-items: center; gap: 1rem; padding: 3rem 4%; text-align: center; }
+.demo-notice { color: #bbd2d8; font-size: .875rem; line-height: 1.6; margin: 1rem 0 2rem; }
+.template-input { padding: .8rem; color: white; background: #141414; border: 1px solid var(--border); border-radius: 4px; }
+.template-intro { position: fixed; inset: 0; }
+.error-screen { padding: 150px 4%; }
+.admin-module-card .card-media .template-cover { min-height: 160px; }
+input:disabled { cursor: default; opacity: .6; }
+@media (max-width: 768px) {
+  .hero-banner { min-height: 620px; height: 82vh; max-height: none; justify-content: flex-end; padding: 0 1rem 7.5rem; background-position: 38% center; }
+  .hero-info { margin-bottom: 0; }
+  .hero-title { font-size: clamp(2.35rem, 10vw, 3.7rem); }
+  .hero-description { display: none; }
+  .template-cover { padding: .8rem; padding-top: 2.8rem; gap: .4rem; }
+  .template-cover h4 { font-size: 1.3rem; }
+  .player-page, .module-page { padding-top: 100px; }
+  .video-placeholder h3 { font-size: 1.5rem; }
+  .video-placeholder { gap: .5rem; }
+  .admin-main-modern.full-width { padding-top: 110px; }
+  .batcave-tabs { overflow-x: auto; max-width: 92vw; }
+  .notifications-panel { top: 105px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+.video-wrapper { position: relative; flex-shrink: 0; }
+@media (max-width: 768px) { .video-footer { flex-direction: column; gap: 1.5rem; } .video-actions { min-width: 0; } }
+.hero-actions .btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; }

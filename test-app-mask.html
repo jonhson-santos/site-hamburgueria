@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: #090807;
+    color: white;
+    font-family: sans-serif;
+  }
+  .section {
+    position: relative;
+    width: 100%;
+    padding: 100px 0;
+    display: flex;
+    justify-content: center;
+  }
+  .container {
+    width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+  .left {
+    padding-right: 50px;
+  }
+  .right {
+    position: relative;
+  }
+  .img {
+    width: 100%;
+    display: block;
+    -webkit-mask-image: radial-gradient(ellipse at center, black 50%, transparent 90%);
+    mask-image: radial-gradient(ellipse at center, black 50%, transparent 90%);
+  }
+  .img2 {
+    width: 100%;
+    display: block;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%), linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    -webkit-mask-composite: source-in;
+  }
+</style>
+</head>
+<body>
+  <h1>Radial Mask</h1>
+  <div class="section">
+    <div class="container">
+      <div class="left">
+        <h2>BAIXE NOSSO APP</h2>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+      <div class="right">
+        <img class="img" src="./public/media/brasa-app-mockup.jpg">
+      </div>
+    </div>
+  </div>
+  <h1>Linear + Composite Mask</h1>
+  <div class="section">
+    <div class="container">
+      <div class="left">
+        <h2>BAIXE NOSSO APP</h2>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+      <div class="right">
+        <img class="img2" src="./public/media/brasa-app-mockup.jpg">
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,335 @@
+.profiles-container {
+  min-height: 100vh;
+  background-color: #141414; /* Netflix darker bg */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  animation: fadeIn 0.4s ease-in;
+}
+
+.profiles-container h2 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 3rem;
+  color: white;
+}
+
+/* New centered title class */
+.centered-title {
+  text-align: center;
+}
+
+.profiles-list {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.profile-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  width: 150px;
+}
+
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 3px solid transparent;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-name {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #808080;
+  transition: color 0.2s ease;
+}
+
+.profile-item:hover .profile-avatar {
+  border-color: white;
+}
+
+.profile-item:hover .profile-name {
+  color: white;
+}
+
+.manage-profiles-btn {
+  margin-top: 4rem;
+  background: transparent;
+  color: #808080;
+  border: 1px solid #808080;
+  padding: 0.6rem 2rem;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.manage-profiles-btn:hover {
+  color: white;
+  border-color: white;
+}
+
+/* Edit State */
+.edit-profile-wrapper {
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Circular upload avatar ── */
+.avatar-upload-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  border: 3px solid rgba(255, 255, 255,0.15);
+  transition: border-color 0.25s;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.avatar-upload-circle:hover {
+  border-color: rgba(255, 255, 255,0.7);
+}
+
+.avatar-upload-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.25s;
+  display: block;
+}
+
+.avatar-upload-circle:hover img {
+  filter: brightness(0.4);
+}
+
+.upload-circle-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  opacity: 0;
+  transition: opacity 0.25s;
+  pointer-events: none;
+}
+
+.avatar-upload-circle:hover .upload-circle-overlay {
+  opacity: 1;
+}
+
+.img-loading {
+  filter: brightness(0.4) !important;
+}
+
+.spinner {
+  width: 22px;
+  height: 22px;
+  border: 2px solid rgba(255, 255, 255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.upload-hint {
+  font-size: 0.82rem;
+  color: #777;
+  margin-bottom: 0.5rem;
+  max-width: 300px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.upload-error {
+  color: #e87c7c;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn-save {
+  background: white;
+  color: black;
+  font-weight: bold;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 4px;
+}
+
+.btn-cancel {
+  background: transparent;
+  color: white;
+  border: 1px solid #808080;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 4px;
+}
+
+.btn-cancel:hover {
+  border-color: white;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(1.1); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive Profiles */
+@media (max-width: 768px) {
+  .profiles-container h2 {
+    font-size: 1.8rem;
+  }
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+  }
+  .profile-item {
+    width: 100px;
+  }
+  .manage-profiles-btn {
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+  }
+  .preset-grid img {
+    width: 90px; /* Adjusted for smaller screens */
+    height: 90px; /* Adjusted for smaller screens */
+  }
+  .preset-grid {
+    gap: 1rem; /* Adjusted gap for smaller screens */
+    max-height: 350px; /* Adjusted max-height for smaller screens */
+  }
+}
+
+.admin-portal-access-btn {
+  margin-top: 3rem;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(165, 243, 252, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  max-width: 320px;
+  width: 100%;
+}
+
+.premium-glow {
+  box-shadow: 0 0 15px rgba(165, 243, 252, 0.1);
+}
+
+.admin-portal-access-btn:hover {
+  background: rgba(165, 243, 252, 0.08);
+  border-color: rgba(165, 243, 252, 0.6);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(165, 243, 252, 0.15);
+}
+
+.admin-btn-content {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  text-align: left;
+}
+
+.admin-btn-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-btn-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #a5f3fc;
+  opacity: 0.8;
+}
+
+.admin-btn-sub {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.gold-icon {
+  color: #a5f3fc;
+  filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+.pulse {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.profiles-footer-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.manage-profiles-btn {
+  margin-top: 0 !important;
+}
+
+.logout-btn-minimal {
+  background: transparent;
+  color: #555;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 0.5rem 1rem;
+}
+
+.logout-btn-minimal:hover {
+  color: #ff4d4d;
+  text-decoration: underline;
+}
