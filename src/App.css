@@ -612,12 +612,12 @@ body::-webkit-scrollbar {
   gap: 24px;
   padding: 16px max(32px, calc((100% - 1240px) / 2));
   border-top: 1px solid rgba(245, 133, 24, 0.2);
+  border-bottom: none;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 2.5px;
   color: #c7ad8e;
-  background: rgba(13, 10, 7, 0.85);
-  backdrop-filter: blur(8px);
+  background-color: #0b0907;
 }
 
 /* ==========================================================================
@@ -729,7 +729,6 @@ body::-webkit-scrollbar {
   display: block;
   width: 100%;
   height: 100%;
-  preserveAspectRatio: none;
 }
 
 .divider-flip svg {
@@ -1049,7 +1048,7 @@ h2 span {
    ========================================================================== */
 .combos-section {
   padding: 72px 0 56px;
-  background: radial-gradient(ellipse at 10% 0%, rgba(50, 35, 24, 0.7) 0%, transparent 60%), var(--dark-bg);
+  background: radial-gradient(ellipse at 50% 50%, rgba(50, 35, 24, 0.45) 0%, transparent 70%), var(--dark-bg);
   color: #ffffff;
 }
 
@@ -2430,23 +2429,39 @@ footer {
    ========================================================================== */
 .toast {
   position: fixed;
-  bottom: 28px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%);
   z-index: 120;
-  background: #201a14;
+  width: min(480px, calc(100% - 24px));
+  box-sizing: border-box;
+  background: #17120d;
   color: #fff6eb;
-  padding: 14px 14px 14px 20px;
-  border-radius: 999px;
-  border: 1px solid rgba(245, 133, 24, 0.4);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
-  font-size: 13.5px;
+  padding: 10px 10px 10px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  font-size: 13px;
   font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 14px;
-  max-width: calc(100% - 32px);
+  gap: 10px;
   animation: toast-in 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+
+.toast-text {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toast-total {
+  font-size: 12px;
+  font-weight: 800;
+  color: #f5b96b;
+  white-space: nowrap;
 }
 
 @keyframes toast-in {
@@ -2455,15 +2470,27 @@ footer {
 }
 
 .toast button {
-  background: var(--orange);
+  background: linear-gradient(135deg, #fa9128 0%, #e26f1c 100%);
   color: #1c1206;
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 800;
   cursor: pointer;
   border: 0;
-  padding: 8px 16px;
-  border-radius: 999px;
+  padding: 12px 20px;
+  border-radius: 12px;
   white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(212, 100, 22, 0.4);
+}
+
+@media (max-width: 480px) {
+  .toast {
+    bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .toast-total {
+    display: none;
+  }
 }
 
 .cart-dialog {

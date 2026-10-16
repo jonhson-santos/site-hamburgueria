@@ -564,9 +564,9 @@ function PaymentMark({ name }) {
 
 // Shapes de onda exclusivos por tipo de transição — cada divisão tem personalidade própria
 const DIVIDER_SHAPES = {
-  'hero-to-cream':   'M0,0 C240,68 480,72 720,48 C960,24 1200,64 1440,36 L1440,80 L0,80 Z',
-  'cream-to-dark':   'M0,28 C180,0  480,72 840,40 C1080,16 1260,60 1440,20 L1440,80 L0,80 Z',
-  'dark-to-cream':   'M0,40 C300,72 600,8  900,52 C1100,80 1300,28 1440,56 L1440,80 L0,80 Z',
+  'hero-to-cream':   'M0,28 C240,68 480,72 720,44 C960,18 1200,64 1440,36 L1440,80 L0,80 Z',
+  'cream-to-dark':   'M0,32 C260,76 540,16 820,58 C1100,82 1300,24 1440,46 L1440,80 L0,80 Z',
+  'dark-to-cream':   'M0,44 C260,12 560,78 860,32 C1120,0 1320,62 1440,38 L1440,80 L0,80 Z',
   'cream-to-app':    'M0,16 C360,76 720,0  1080,60 C1260,80 1380,32 1440,48 L1440,80 L0,80 Z',
   'app-to-offer':    'M0,52 C200,20 560,76 800,32 C1040,0  1280,60 1440,28 L1440,80 L0,80 Z',
   'offer-to-cream':  'M0,24 C280,80 640,4  960,56 C1120,80 1300,20 1440,44 L1440,80 L0,80 Z',
@@ -916,7 +916,7 @@ export default function App() {
       rootMargin: '0px 0px -40px 0px'
     })
 
-    const elements = document.querySelectorAll('.reveal-on-scroll, .product-card, .quality-item, .qualities-grid > div, .about-section, .location-card, .coupon-box, .delivery-inner, .review-card, .cardapio-card')
+    const elements = document.querySelectorAll('.reveal-on-scroll, .product-card, .quality-item, .qualities-grid > div, .about-copy, .location-card, .coupon-box, .delivery-inner, .review-card, .cardapio-card')
     elements.forEach(el => observer.observe(el))
 
     return () => observer.disconnect()
@@ -1317,7 +1317,7 @@ export default function App() {
               </div>
             </section>
 
-            <SectionDivider from="cream" to="dark" flip />
+            <SectionDivider from="cream" to="dark" />
 
             <section className="combos-section" id="combos">
               <div className="container">
@@ -1332,60 +1332,62 @@ export default function App() {
             <SectionDivider from="dark" to="cream" />
 
             <section className="about-section light-section" id="sobre">
-              <div className="about-image">
-                <img src="/media/chef-burger-express.png" alt="Chef preparando hambúrgueres em uma churrasqueira com brasa acesa" loading="lazy" />
-                <p className="handwritten">Aqui o sabor<br />é coisa séria</p>
-              </div>
-              <div className="about-copy">
-                <h2>Muito mais que<br />uma hamburgueria</h2>
-                <p>A Brasa Prime nasceu de uma paixão simples — fazer um hambúrguer que dá vontade de comer de novo</p>
-                <p>Por aqui a carne encontra a brasa no ponto certo e os molhos têm receita própria<br />Cada ingrediente tem um motivo para estar ali e tudo é feito com calma e cuidado</p>
-                <div className="about-values">
-                  <div className="about-value-item">
-                    <div className="about-value-icon">
-                      <svg className="value-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <circle cx="12" cy="8" r="6" />
-                        <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
-                        <polygon points="12 5 13.09 7.26 15.5 7.63 13.75 9.38 14.18 11.8 12 10.64 9.82 11.8 10.25 9.38 8.5 7.63 10.91 7.26 12 5" fill="currentColor" stroke="none" />
-                      </svg>
-                    </div>
-                    <div className="about-value-text">
-                      <strong>Qualidade</strong>
-                      <span>em cada detalhe</span>
-                    </div>
-                  </div>
-
-                  <div className="about-value-item">
-                    <div className="about-value-icon">
-                      <svg className="value-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
-                        <path d="M6 6h10" />
-                        <path d="M6 10h10" />
-                        <path d="M6 14h6" />
-                        <path d="M17 14.5c.5-.5 1-1.2 1-1.8a1.2 1.2 0 1 0-2.4 0c0 .6.5 1.3 1 1.8Z" fill="currentColor" stroke="none" />
-                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                      </svg>
-                    </div>
-                    <div className="about-value-text">
-                      <strong>Receitas</strong>
-                      <span>com personalidade</span>
-                    </div>
-                  </div>
-
-                  <div className="about-value-item">
-                    <div className="about-value-icon">
-                      <svg className="value-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
-                        <path d="M12 7.5c1 1.5 2 2.5 2 3.8a2 2 0 0 1-4 0c0-1.3 1-2.3 2-3.8z" fill="currentColor" stroke="none" />
-                      </svg>
-                    </div>
-                    <div className="about-value-text">
-                      <strong>Paixão</strong>
-                      <span>pelo que fazemos</span>
-                    </div>
-                  </div>
+              <div className="container about-container">
+                <div className="about-image">
+                  <img src="/media/chef-burger-express.png" alt="Chef preparando hambúrgueres em uma churrasqueira com brasa acesa" loading="lazy" />
+                  <p className="handwritten">Aqui o sabor<br />é coisa séria</p>
                 </div>
-                <a className="button button-outline dark-outline" href="#contato" onClick={(e) => { e.preventDefault(); goToHomeSection('contato') }}>Vem conhecer a casa</a>
+                <div className="about-copy">
+                  <h2>Muito mais que<br />uma hamburgueria</h2>
+                  <p>A Brasa Prime nasceu de uma paixão simples — fazer um hambúrguer que dá vontade de comer de novo</p>
+                  <p>Por aqui a carne encontra a brasa no ponto certo e os molhos têm receita própria<br />Cada ingrediente tem um motivo para estar ali e tudo é feito com calma e cuidado</p>
+                  <div className="about-values">
+                    <div className="about-value-item">
+                      <div className="about-value-icon">
+                        <svg className="value-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <circle cx="12" cy="8" r="6" />
+                          <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+                          <polygon points="12 5 13.09 7.26 15.5 7.63 13.75 9.38 14.18 11.8 12 10.64 9.82 11.8 10.25 9.38 8.5 7.63 10.91 7.26 12 5" fill="currentColor" stroke="none" />
+                        </svg>
+                      </div>
+                      <div className="about-value-text">
+                        <strong>Qualidade</strong>
+                        <span>em cada detalhe</span>
+                      </div>
+                    </div>
+
+                    <div className="about-value-item">
+                      <div className="about-value-icon">
+                        <svg className="value-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
+                          <path d="M6 6h10" />
+                          <path d="M6 10h10" />
+                          <path d="M6 14h6" />
+                          <path d="M17 14.5c.5-.5 1-1.2 1-1.8a1.2 1.2 0 1 0-2.4 0c0 .6.5 1.3 1 1.8Z" fill="currentColor" stroke="none" />
+                          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                        </svg>
+                      </div>
+                      <div className="about-value-text">
+                        <strong>Receitas</strong>
+                        <span>com personalidade</span>
+                      </div>
+                    </div>
+
+                    <div className="about-value-item">
+                      <div className="about-value-icon">
+                        <svg className="value-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+                          <path d="M12 7.5c1 1.5 2 2.5 2 3.8a2 2 0 0 1-4 0c0-1.3 1-2.3 2-3.8z" fill="currentColor" stroke="none" />
+                        </svg>
+                      </div>
+                      <div className="about-value-text">
+                        <strong>Paixão</strong>
+                        <span>pelo que fazemos</span>
+                      </div>
+                    </div>
+                  </div>
+                  <a className="button button-outline dark-outline" href="#contato" onClick={(e) => { e.preventDefault(); goToHomeSection('contato') }}>Vem conhecer a casa</a>
+                </div>
               </div>
             </section>
 
@@ -1600,7 +1602,7 @@ export default function App() {
         </a>
       )}
 
-      {notice && <div className="toast" role="status">{notice}<button onClick={openCart}>Ver pedido</button></div>}
+      {notice && <div className="toast" role="status"><span className="toast-text">{notice}</span>{totalItems > 0 && <span className="toast-total">{totalItems} {totalItems === 1 ? 'item' : 'itens'} · {money(subtotal - discount)}</span>}<button onClick={openCart}>Ver pedido</button></div>}
 
       <SectionIndicator currentView={currentView} onNavigate={goToHomeSection} />
 
