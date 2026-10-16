@@ -784,6 +784,8 @@ export default function App() {
   const [couponApplied, setCouponApplied] = useState(null) // {code, percent}
   const [couponMessage, setCouponMessage] = useState('')
   const [step, setStep] = useState('cart') // cart | info | done
+  const [checkoutStage, setCheckoutStage] = useState('dados') // dados | endereco | pagamento
+  const [checkoutError, setCheckoutError] = useState('')
   const [orderType, setOrderType] = useState('delivery') // 'delivery' | 'retirada'
   const [lastOrder, setLastOrder] = useState(null)
   const [form, setForm] = useState({
@@ -982,7 +984,7 @@ export default function App() {
     setCartBump(true)
     setTimeout(() => setCartBump(false), 450)
   }
-  function openCart() { setStep('cart'); dialog.current?.showModal(); document.body.style.overflow = 'hidden' }
+  function openCart() { setStep('cart'); setCheckoutStage('dados'); setCheckoutError(''); dialog.current?.showModal(); document.body.style.overflow = 'hidden' }
   function closeCart() { dialog.current?.close(); document.body.style.overflow = '' }
   function changeQuantity(id, q) { setCart(c => c.map(i => (i.id === id ? { ...i, quantity: q } : i)).filter(i => i.quantity > 0)) }
   function tryCoupon(code) {
@@ -1000,6 +1002,35 @@ export default function App() {
   function brandClick(e, target) {
     e.preventDefault(); secretTap()
     if (target === 'home') goToHomeSection('inicio')
+  }
+  // Checkout progressivo: dados -> endereco -> pagamento (retirada pula o endereco)
+  const checkoutFlow = orderType === 'delivery' ? ['dados', 'endereco', 'pagamento'] : ['dados', 'pagamento']
+  const checkoutLabels = { dados: 'Seus dados', endereco: 'Endereço', pagamento: 'Pagamento' }
+  function checkoutNext() {
+    setCheckoutError('')
+    if (checkoutStage === 'dados') {
+      if (!form.name.trim() || form.phone.replace(/\D/g, '').length < 10) {
+        setCheckoutError('Preencha seu nome e WhatsApp com DDD para continuar.')
+        return
+      }
+      setCheckoutStage(orderType === 'delivery' ? 'endereco' : 'pagamento')
+    } else if (checkoutStage === 'endereco') {
+      if (!form.street.trim() || !form.number.trim()) {
+        setCheckoutError('Informe a rua e o número para entrega.')
+        return
+      }
+      setCheckoutStage('pagamento')
+    }
+  }
+  function checkoutBack() {
+    setCheckoutError('')
+    if (checkoutStage === 'pagamento') setCheckoutStage(orderType === 'delivery' ? 'endereco' : 'dados')
+    else if (checkoutStage === 'endereco') setCheckoutStage('dados')
+  }
+  function pickOrderType(t) {
+    setOrderType(t)
+    setCheckoutError('')
+    if (t === 'retirada' && checkoutStage === 'endereco') setCheckoutStage('pagamento')
   }
   function finishOrder(e) {
     e.preventDefault()
@@ -1632,16 +1663,32 @@ export default function App() {
                 <p className="total"><strong>Total</strong><strong>{money(subtotal - discount)}</strong></p>
                 <small>Taxa de entrega calculada no próximo passo</small>
               </div>
-              <button className="button button-primary checkout-button" onClick={() => setStep('info')}>Continuar · dados de entrega</button>
+              <button className="button button-primary checkout-button" onClick={() => { setCheckoutStage('dados'); setCheckoutError(''); setStep('info') }}>Continuar · dados de entrega</button>
             </>
           ) : (
             <form className="checkout-form" onSubmit={finishOrder}>
+              {/* Indicador de etapas do checkout progressivo */}
+              <div className="checkout-steps" aria-label="Etapas do pedido">
+                {checkoutFlow.map(s => {
+                  const idx = checkoutFlow.indexOf(s)
+                  const cur = checkoutFlow.indexOf(checkoutStage)
+                  const cls = s === checkoutStage ? 'active' : idx < cur ? 'done' : ''
+                  return (
+                    <div key={s} className={`checkout-step ${cls}`} aria-current={s === checkoutStage ? 'step' : undefined}>
+                      <span className="step-bar" />
+                      <span className="step-label">{idx + 1}. {checkoutLabels[s]}</span>
+                    </div>
+                  )
+                })}
+              </div>
+
+              {checkoutStage === 'dados' && (<>
               {/* Toggle Delivery vs Retirada */}
               <div className="checkout-mode-toggle" role="group" aria-label="Forma de recebimento">
                 <button
                   type="button"
                   className={`checkout-mode-btn ${orderType === 'delivery' ? 'active' : ''}`}
-                  onClick={() => setOrderType('delivery')}
+                  onClick={() => pickOrderType('delivery')}
                 >
                   <SvgIcon name="bag" />
                   <span>Entrega Delivery</span>
@@ -1649,7 +1696,7 @@ export default function App() {
                 <button
                   type="button"
                   className={`checkout-mode-btn ${orderType === 'retirada' ? 'active' : ''}`}
-                  onClick={() => setOrderType('retirada')}
+                  onClick={() => pickOrderType('retirada')}
                 >
                   <SvgIcon name="pin" />
                   <span>Retirar no Balcão</span>
@@ -1681,9 +1728,14 @@ export default function App() {
                   </label>
                 </div>
               </div>
+              {checkoutError && <p className="checkout-error" role="alert">{checkoutError}</p>}
+              <div className="checkout-nav">
+                <button className="button button-outline dark-outline" type="button" onClick={() => setStep('cart')}>← Carrinho</button>
+                <button className="button button-primary" type="button" onClick={checkoutNext}>Continuar</button>
+              </div>
+              </>)}
 
-              {/* Endereço ou Local de Retirada */}
-              {orderType === 'delivery' ? (
+              {checkoutStage === 'endereco' && (<>
                 <div className="checkout-section-box">
                   <div className="checkout-box-title-row">
                     <span className="checkout-box-title">Endereço de Entrega</span>
@@ -1755,7 +1807,16 @@ export default function App() {
                     </label>
                   </div>
                 </div>
-              ) : (
+              {checkoutError && <p className="checkout-error" role="alert">{checkoutError}</p>}
+              <div className="checkout-nav">
+                <button className="button button-outline dark-outline" type="button" onClick={checkoutBack}>← Voltar</button>
+                <button className="button button-primary" type="button" onClick={checkoutNext}>Continuar</button>
+              </div>
+              </>)}
+
+              {checkoutStage === 'pagamento' && (<>
+              {/* Resumo do que já foi preenchido */}
+              {orderType === 'retirada' ? (
                 <div className="checkout-retirada-card">
                   <div className="retirada-icon-wrap"><SvgIcon name="pin" /></div>
                   <div>
@@ -1763,6 +1824,12 @@ export default function App() {
                     <p>{settings.address}</p>
                     <small>Seu pedido fica pronto em ~20 a 30 minutos.</small>
                   </div>
+                </div>
+              ) : (
+                <div className="checkout-section-box checkout-recap">
+                  <span className="checkout-box-title">Resumo da entrega</span>
+                  <p><strong>{form.name}</strong> · {form.phone}</p>
+                  <p>{form.street}, {form.number}{form.complement ? ` (${form.complement})` : ''} — {form.neighborhood || 'Bairro'}</p>
                 </div>
               )}
 
@@ -1838,9 +1905,10 @@ export default function App() {
               <button className="button button-primary checkout-button" type="submit">
                 Confirmar pedido · {money(total)}
               </button>
-              <button className="text-button" type="button" onClick={() => setStep('cart')}>
-                ← Voltar ao carrinho
+              <button className="text-button" type="button" onClick={checkoutBack}>
+                ← Voltar
               </button>
+              </>)}
             </form>
           )}
         </div>
