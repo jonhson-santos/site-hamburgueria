@@ -419,7 +419,7 @@ function CardapioSection({
                     <SvgIcon name={favorites[product.id] ? 'heart-filled' : 'heart'} />
                   </button>
                   <img
-                    src={product.image || '/media/burgers.png'}
+                    src={product.image || '/media/burgers.jpg'}
                     alt={product.name}
                     className="cardapio-card-img"
                     loading="lazy"
@@ -580,7 +580,7 @@ function InstallAppModal({ isOpen, onClose, onOpenCardapio }) {
         <button className="pwa-modal-close" onClick={onClose} aria-label="Fechar modal de instalação">✕</button>
         <div className="pwa-modal-header">
           <div className="pwa-modal-icon">
-            <img src="/media/burgers.png" alt="Brasa Prime App" />
+            <img src="/media/burgers.jpg" alt="Brasa Prime App" />
           </div>
           <h3 id="pwa-modal-title">Instalar Web App Brasa Prime</h3>
           <p>Tenha acesso instantâneo direto da tela inicial do seu celular ou PC, sem precisar baixar na loja de aplicativos!</p>
@@ -1089,8 +1089,8 @@ export default function App() {
                   loop
                   muted
                   playsInline
-                  preload="metadata"
-                  poster="/media/hero.png"
+                  preload="auto"
+                  poster="/media/hero.jpg"
                   aria-hidden="true"
                 >
                   <source src="/videos/hero-burger.mp4" type="video/mp4" />
@@ -1440,7 +1440,7 @@ export default function App() {
                 </div>
                 <div className="location-card">
                   <div className="storefront-photo">
-                    <img src="/media/brasa-prime-storefront.png" alt="Fachada aconchegante da Brasa Prime à noite" loading="lazy" />
+                    <img src="/media/brasa-prime-storefront.jpg" alt="Fachada aconchegante da Brasa Prime à noite" loading="lazy" />
                     <div className="storefront-vignette" />
                     <div className="storefront-handwriting">
                       <span>Ambiente acolhedor</span>
